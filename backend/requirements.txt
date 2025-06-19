@@ -9,3 +9,4 @@ unstructured
 PyPDF2
 ollama
 requests
+langchain-ollama

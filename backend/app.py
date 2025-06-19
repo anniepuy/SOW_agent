@@ -11,6 +11,7 @@ from flask_cors import CORS
 import os
 import uuid
 import logging
+from rag_utils import parse_and_index_document
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -53,15 +54,20 @@ def upload():
         file.save(file_path)
         logger.info(f"File saved successfully with doc_id: {doc_id}")
 
-        ##Add parsing logic etc.
+        ##call the parsing utility
+        num_chunks = parse_and_index_document(file_path, doc_id, STORAGE_DIR)
+
         return jsonify({
-            "message": f"File '{filename}' uploaded successfully.",
+            "message": f"File '{filename}' uploaded successfully with {num_chunks} chunks.",
             "doc_id": doc_id
         }), 200
         
     except Exception as e:
         logger.error(f"Error during file upload: {str(e)}")
         return jsonify({"error": f"Upload failed: {str(e)}"}), 500
+    
+
+
 
 @app.route('/api/chat', methods=['POST'])
 def chat():
