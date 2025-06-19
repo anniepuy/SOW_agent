@@ -1,0 +1,54 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+.env/
+env/
+.rfp-env/
+.rfp-env*/
+
+# Python environment files
+*.egg-info/
+*.egg
+dist/
+build/
+
+# Ollama model cache (if any local cache used)
+.ollama/
+
+# Mac/Windows system files
+.DS_Store
+Thumbs.db
+
+# Streamlit specific cache
+frontend/.streamlit/
+frontend/.cache/
+frontend/.mypy_cache/
+
+# IDE/editor settings
+.vscode/
+.idea/
+*.swp
+
+# API keys, environment variables, and sensitive config
+*.env
+backend/.env
+frontend/.env
+
+# Data files and local storage (per-RFP vectors, chats, raw docs)
+backend/storage/
+backend/data/
+backend/outputs/
+
+# Log files
+*.log
+
+# Jupyter Notebooks checkpoints (if used)
+.ipynb_checkpoints/
+
+# Misc
+*.bak
+*.tmp

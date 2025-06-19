@@ -1,0 +1,11 @@
+Flask
+langchain
+chromadb
+pydantic
+python-dotenv
+requests
+unstructured
+PyPDF2
+ollama
+streamlit
+requests
