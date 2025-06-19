@@ -26,19 +26,30 @@ if rfp_file and st.button("Submit RFP"):
         # Reset file pointer for potential future reads
         rfp_file.seek(0)
         
-        # Create file tuple with proper filename and content type
+        # Create file tuple with proper filename and passing the file as binary
         files = {
             "file": (
-                rfp_file.name,  # Use original filename
-                io.BytesIO(file_content),  # Use BytesIO for binary content
-                rfp_file.type or "application/octet-stream"  # Fallback content type
+                # Use original filename
+                rfp_file.name,  
+                # Use BytesIO for binary content
+                io.BytesIO(file_content),  
+                # Fallback content type
+                rfp_file.type or "application/octet-stream"  
             )
         }
         
         response = requests.post(f"{BACKEND_URL}/upload", files=files)
         
         if response.status_code == 200:
-            st.success(response.json().get("message"))
+            data = response.json()
+            st.success(data.get("message"))
+            doc_id = data.get("doc_id")
+            doc_name = rfp_file.name
+            if doc_id:
+                st.info(f"Uploaded document: {doc_name} with ID: {doc_id}")
+                #Store doc_id for later use
+                st.session_state["last_doc_id"] = doc_id
+                st.session_state["last_doc_name"] = doc_name
         else:
             st.error(f"Upload failed: {response.status_code} - {response.text}")
             
