@@ -1,6 +1,7 @@
 flask==2.3.3
 flask-cors==4.0.0
 langchain
+langchain-community
 chromadb
 pydantic
 python-dotenv
@@ -8,5 +9,6 @@ requests
 unstructured
 PyPDF2
 ollama
-requests
 langchain-ollama
+python-docx
+docx2txt
